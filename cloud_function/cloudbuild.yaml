@@ -1,0 +1,15 @@
+steps:
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  args:
+  - gcloud
+  - functions
+  - deploy
+  - dataform_slack_alert
+  - --region=europe-west3
+  - --source=.
+  - --trigger-topic=dataform_assertion_logs
+  - --runtime=nodejs20
+  - --entry-point=send_alert
+  - --allow-unauthenticated
+  - --timeout=3600
+  - --gen2

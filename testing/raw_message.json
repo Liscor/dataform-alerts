@@ -1,0 +1,94 @@
+{
+  "protoPayload": {
+    "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
+    "status": {
+      "code": 11,
+      "message": "Assertion failed, expected zero rows."
+    },
+    "authenticationInfo": {
+      "principalEmail": "service-795145299454@gcp-sa-dataform.iam.gserviceaccount.com"
+    },
+    "requestMetadata": {},
+    "serviceName": "bigquery.googleapis.com",
+    "methodName": "jobservice.getqueryresults",
+    "authorizationInfo": [
+      {
+        "resource": "projects/moritz-test",
+        "permission": "bigquery.jobs.create",
+        "granted": true
+      }
+    ],
+    "resourceName": "projects/moritz-test/queries/script_job_330dac02afb4222efb6f6100e7872d26_2",
+    "serviceData": {
+      "@type": "type.googleapis.com/google.cloud.bigquery.logging.v1.AuditData",
+      "jobGetQueryResultsRequest": {},
+      "jobGetQueryResultsResponse": {
+        "job": {
+          "jobName": {
+            "projectId": "moritz-test",
+            "jobId": "script_job_330dac02afb4222efb6f6100e7872d26_2",
+            "location": "EU"
+          },
+          "jobConfiguration": {
+            "query": {
+              "query": "ASSERT (\n  ( SELECT COUNT(1) FROM `moritz-test.data_quality_checks.01_test_session_wo_page_views` ) = 0\n) AS \"Assertion failed, expected zero rows.\"",
+              "destinationTable": {},
+              "createDisposition": "CREATE_IF_NEEDED",
+              "writeDisposition": "WRITE_EMPTY",
+              "defaultDataset": {},
+              "queryPriority": "QUERY_INTERACTIVE",
+              "statementType": "ASSERT"
+            }
+          },
+          "jobStatus": {
+            "state": "DONE",
+            "error": {
+              "code": 11,
+              "message": "Assertion failed, expected zero rows."
+            },
+            "additionalErrors": [
+              {
+                "code": 11,
+                "message": "Assertion failed, expected zero rows."
+              }
+            ]
+          },
+          "jobStatistics": {
+            "createTime": "2024-04-14T06:51:49.954Z",
+            "startTime": "2024-04-14T06:51:50.277Z",
+            "endTime": "2024-04-14T06:52:57.983Z",
+            "totalSlotMs": "755767",
+            "referencedTables": [
+              {
+                "projectId": "moritz-test",
+                "datasetId": "analytics_155462156",
+                "tableId": "events_20240413"
+              }
+            ],
+            "totalTablesProcessed": 1,
+            "referencedViews": [
+              {
+                "projectId": "moritz-test",
+                "datasetId": "data_quality_checks",
+                "tableId": "01_test_session_wo_page_views"
+              }
+            ],
+            "totalViewsProcessed": 1,
+            "reservation": "moritz-test:EU.ga4-reservation-eu"
+          }
+        }
+      }
+    }
+  },
+  "insertId": "3m9c93f2l7v8k",
+  "resource": {
+    "type": "bigquery_resource",
+    "labels": {
+      "project_id": "moritz-test"
+    }
+  },
+  "timestamp": "2024-04-14T06:52:58.799886Z",
+  "severity": "ERROR",
+  "logName": "projects/moritz-test/logs/cloudaudit.googleapis.com%2Fdata_access",
+  "receiveTimestamp": "2024-04-14T06:52:59.517136869Z"
+}

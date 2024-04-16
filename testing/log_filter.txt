@@ -1,0 +1,8 @@
+severity=ERROR
+resource.type="bigquery_resource"
+protoPayload.methodName="jobservice.getqueryresults"
+protoPayload.status.message="Assertion failed, expected zero rows."
+
+error_log_filter = "severity=\"ERROR\" AND resource.type=\"bigquery_resource\" AND protoPayload.methodName=\"jobservice.getqueryresults\" AND protoPayload.status.message=\"Assertion failed, expected zero rows.\""
+
+error_log_filter = "(resource.type=\"dataform.googleapis.com/Repository\" OR resource.type=\"workflows.googleapis.com/Workflow\")\nAND severity = \"ERROR\""
