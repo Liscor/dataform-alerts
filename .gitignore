@@ -1,0 +1,5 @@
+.terraform
+.terraform.lock.hcl
+cloud_function/node_modules
+cloud_function.zip
+terraform.tfstate
