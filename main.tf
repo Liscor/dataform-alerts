@@ -56,24 +56,24 @@ resource "google_project_iam_member" "sa_add_roles" {
 }
 
 # Pub/sub topic for our log sink
-resource "google_pubsub_topic" "dataform_assertion_logs" {
-  name    = "dataform_assertion_logs"
+resource "google_pubsub_topic" "dataform_logs" {
+  name    = "dataform_logs"
   project = var.project_id
   depends_on = [ google_project_service.pub_sub_api ]
 }
-resource "google_logging_project_sink" "dataform_assertion_failed" {
-  name        = "dataform_assertion_failed"
-  destination = "pubsub.googleapis.com/projects/${var.project_id}/topics/dataform_assertion_logs"
+resource "google_logging_project_sink" "dataform_log_sink" {
+  name        = "dataform_log_sink"
+  destination = "pubsub.googleapis.com/projects/${var.project_id}/topics/dataform_logs"
   filter = var.error_log_filter
-  depends_on = [ google_pubsub_topic.dataform_assertion_logs, google_project_service.logging_api ]
+  depends_on = [ google_pubsub_topic.dataform_logs, google_project_service.logging_api ]
 }
 # Add log sink service account to pub/sub topic and provide pub/sub publish rights
 resource "google_pubsub_topic_iam_member" "pubsub_topic_add_sa" {
   project = var.project_id
-  topic = google_pubsub_topic.dataform_assertion_logs.name
+  topic = google_pubsub_topic.dataform_logs.name
   role = "roles/pubsub.publisher"
   member = "serviceAccount:service-${data.google_project.project.number}@gcp-sa-logging.iam.gserviceaccount.com"
-  depends_on = [ google_logging_project_sink.dataform_assertion_failed ]
+  depends_on = [ google_logging_project_sink.dataform_log_sink ]
 }
 
 #Grant pub/sub standard service account access to serviceAccountTokenCreator
@@ -114,7 +114,7 @@ resource "google_cloudfunctions_function" "send_slack_alert" {
   source_archive_object = google_storage_bucket_object.source_files.name
    event_trigger {
     event_type = "google.pubsub.topic.publish"
-    resource   = google_pubsub_topic.dataform_assertion_logs.id
+    resource   = google_pubsub_topic.dataform_logs.id
   }
   entry_point           = "send_alert"
   depends_on = [ google_storage_bucket_object.source_files ]

@@ -5,7 +5,7 @@ project_id = "YOUR_GCP_PROJECT_ID"
 region =  "europe-west3"
 
 # Can remain the same - test before usage
-error_log_filter = "severity=\"ERROR\" AND resource.type=\"bigquery_resource\" AND protoPayload.methodName=\"jobservice.getqueryresults\" AND protoPayload.status.message=\"Assertion failed, expected zero rows.\""
+error_log_filter = "(severity=\"ERROR\" AND resource.type=\"bigquery_resource\" AND protoPayload.methodName=\"jobservice.getqueryresults\" AND protoPayload.status.message=\"Assertion failed, expected zero rows.\")OR(jsonPayload.@type=\"type.googleapis.com/google.cloud.dataform.logging.v1.WorkflowInvocationCompletionLogEntry\")"
 
 # Used to name the google storage bucket
 google_storage_bucket_name = "SOME_RANDOM_BUCKET_NAME"

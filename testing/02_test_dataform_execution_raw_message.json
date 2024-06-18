@@ -1,0 +1,22 @@
+{
+  "insertId": "lm6icdzz",
+  "jsonPayload": {
+    "releaseConfigId": "production",
+    "@type": "type.googleapis.com/google.cloud.dataform.logging.v1.WorkflowInvocationCompletionLogEntry",
+    "terminalState": "FAILED",
+    "workflowConfigId": "run_production",
+    "workflowInvocationId": "1718699401-b505a536-5605-41a1-940a-83788373a36b"
+  },
+  "resource": {
+    "type": "dataform.googleapis.com/Repository",
+    "labels": {
+      "repository_id": "mktDWH_repo",
+      "resource_container": "454291246201",
+      "location": "europe-west3"
+    }
+  },
+  "timestamp": "2024-06-18T08:31:23.716132951Z",
+  "severity": "ERROR",
+  "logName": "projects/mktdwh/logs/dataform.googleapis.com%2Fworkflow_invocation_completion",
+  "receiveTimestamp": "2024-06-18T08:31:23.793243168Z"
+}

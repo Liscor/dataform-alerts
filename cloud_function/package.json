@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "@google-cloud/functions-framework": "^3.3.0"
+    "@google-cloud/functions-framework": "^3.4.0"
   },
   "name": "dataform_alerts",
   "version": "0.0.1",
